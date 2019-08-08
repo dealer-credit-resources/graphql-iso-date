@@ -56,8 +56,9 @@ const config: GraphQLScalarTypeConfig<Date, string> = {
       )
     }
 
-    if (validateDate(value)) {
-      return parseDate(value)
+    const trimmedValue = value.split("T")[0];
+    if (validateDate(trimmedValue)) {
+      return parseDate(trimmedValue)
     }
     throw new TypeError(
       `Date cannot represent an invalid date-string ${value}.`
@@ -70,8 +71,9 @@ const config: GraphQLScalarTypeConfig<Date, string> = {
       )
     }
     const { value } = ast
-    if (validateDate(value)) {
-      return parseDate(value)
+    const trimmedValue = value.split("T")[0];
+    if (validateDate(trimmedValue)) {
+      return parseDate(trimmedValue)
     }
     throw new TypeError(
       `Date cannot represent an invalid date-string ${String(value)}.`
